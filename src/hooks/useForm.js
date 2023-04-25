@@ -1,23 +1,10 @@
-import { useState } from "react"
+import { useReducer } from "react"
+import { INITIAL_STATE_FORM, formReducer } from "../reducers/formReducer"
 
 export const useForm = () => {
-	const [values, setValues]= useState({
-		name: '',
-		email:'',
-		online: false
-	})
+	const [values, dispatch]= useReducer(formReducer, INITIAL_STATE_FORM)
 
-	const name = (value) => {
-		setValues({...values, name: value})
-	}
+	
 
-	const email = (value) => {
-		setValues({...values, email: value})
-	}
-
-	const online = (value) => {
-		setValues({...values, online: !values.online})
-	}
-
-	return {values, name, email, online}
+	return {values, dispatch}
 }
